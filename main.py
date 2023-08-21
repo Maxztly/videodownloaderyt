@@ -17,37 +17,36 @@ class YouTubeDownloader:
         y_pos = (screen_height - window_height) // 2
         self.root.geometry(f"{window_width}x{window_height}+{x_pos}+{y_pos}")
 
-        self.font = tkfont.Font(size=16)  # Standard Schriftgröße
+        self.font = tkfont.Font(size=16)  
 
-        self.root.configure(bg="#434243")  # Hintergrundfarbe ändern
+        self.root.configure(bg="#434243")  
 
-        self.url_label = tk.Label(root, text="URL:", font=self.font, bg="#434243", fg="#FFFEFE")  # Textfarbe ändern
-        self.url_label.pack(anchor="w", padx=20)
+        self.url_label = tk.Label(root, text="URL:", font=self.font, bg="#434243", fg="#FFFEFE")
 
-        self.url_entry = tk.Entry(root, font=self.font, bg="#FFFEFE", fg="#434243", insertbackground="#434243")  # Textfarbe und Zeigerfarbe ändern
+        self.url_entry = tk.Entry(root, font=self.font, bg="#FFFEFE", fg="#434243", insertbackground="#434243")
         self.url_entry.pack(fill="both", expand=True, padx=20, pady=(0, 10))
 
-        self.format_label = tk.Label(root, text="Format:", font=self.font, bg="#434243", fg="#FFFEFE")  # Textfarbe ändern
+        self.format_label = tk.Label(root, text="Format:", font=self.font, bg="#434243", fg="#FFFEFE") 
         self.format_label.pack(anchor="w", padx=20)
 
         self.format_var = tk.StringVar(value="mp4")
-        self.format_combobox = ttk.Combobox(root, textvariable=self.format_var, values=["mp4", "mp3"], font=self.font, state="readonly", background="#FFFEFE", foreground="#434243")  # Farben ändern
+        self.format_combobox = ttk.Combobox(root, textvariable=self.format_var, values=["mp4", "mp3"], font=self.font, state="readonly", background="#FFFEFE", foreground="#434243")
         self.format_combobox.pack(fill="both", expand=True, padx=20, pady=(0, 10))
 
-        self.download_button = tk.Button(root, text="Download", command=self.start_download, font=self.font, bg="#FFFEFE", fg="#434243")  # Farben ändern
+        self.download_button = tk.Button(root, text="Download", command=self.start_download, font=self.font, bg="#FFFEFE", fg="#434243")
         self.download_button.pack(fill="both", expand=True, padx=20, pady=(0, 10))
 
-        self.progress_label = tk.Label(root, text="", font=self.font, bg="#434243", fg="#FFFEFE")  # Textfarbe ändern
+        self.progress_label = tk.Label(root, text="", font=self.font, bg="#434243", fg="#FFFEFE")
         self.progress_label.pack()
 
         self.format_combobox.bind("<FocusIn>", self.adjust_combobox_size)
         self.format_combobox.bind("<FocusOut>", self.reset_combobox_size)
 
     def adjust_combobox_size(self, event):
-        self.format_combobox.config(height=2)  # Anpassen der Höhe
+        self.format_combobox.config(height=2)
 
     def reset_combobox_size(self, event):
-        self.format_combobox.config(height=1)  # Zurücksetzen der Höhe
+        self.format_combobox.config(height=1)
 
     def start_download(self):
         self.url = self.url_entry.get()
